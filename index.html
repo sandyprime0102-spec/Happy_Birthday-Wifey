@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday My Darling Wifey 🎂🎁❤️</title>
+<style>
+  /* General Styles */
+  body, html {
+    margin:0; padding:0; width:100%; height:100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ffc1cc, #ffd6a5);
+    overflow-x:hidden;
+  }
+  .scene {
+    width:100%; height:100vh;
+    display:none; flex-direction:column;
+    justify-content:center; align-items:center;
+    text-align:center;
+    position:relative;
+  }
+  .scene.active { display:flex; }
+
+  h1 { font-size:2rem; margin:20px 0; color:#5c3d2e; }
+  p { font-size:1rem; color:#5c3d2e; }
+
+  /* Step 1 Cake */
+  .cake-container { position:relative; }
+  .cake-container img { width:200px; height:auto; }
+  .candle { position:absolute; width:10px; height:35px; border-radius:4px; background:#ffd1cc; top:-35px; }
+  .c1 { left:40px; } .c2 { left:95px; } .c3 { left:150px; }
+  .flame {
+    position:absolute; width:10px; height:22px;
+    background: radial-gradient(#fff,#ffa500,#ff4500);
+    border-radius:50% 50% 20% 20%;
+    top:-20px; left:-2px;
+    animation:flicker 0.1s infinite alternate;
+    box-shadow:0 0 10px #ffa500;
+  }
+  @keyframes flicker { 0%{transform:scale(1) rotate(-2deg);} 100%{transform:scale(1.1) rotate(2deg);} }
+  .smoke { position:absolute; width:10px; height:10px; background:rgba(100,100,100,0.4); border-radius:50%; opacity:0; }
+
+  /* Step 2 Balloon */
+  .balloon-container { position:relative; display:flex; flex-direction:column; align-items:center; }
+  #balloon {
+    width:100px; height:130px;
+    background:url('balloon1.png') no-repeat center/contain;
+    cursor:pointer; position:relative; z-index:10;
+  }
+  .balloon-bg {
+    position:absolute; width:60px; height:80px;
+    top:20px; opacity:0.7;
+    background:no-repeat center/contain;
+    animation:float 4s infinite ease-in-out;
+  }
+  .balloon-bg1 { background:url('balloon2.png') no-repeat center/contain; left:-100px; animation-delay:0s; }
+  .balloon-bg2 { background:url('balloon3.png') no-repeat center/contain; left:150px; top:60px; animation-delay:1s; }
+  .balloon-bg3 { background:url('balloon4.png') no-repeat center/contain; left:-150px; top:100px; animation-delay:2s; }
+  @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-20px);} }
+
+  /* Step 3 Fireworks & Button */
+  #step3 { position:relative; overflow:hidden; }
+  #fireworksVideo {
+    position:absolute; top:0; left:0; width:100%; height:100%;
+    object-fit:cover; z-index:0;
+  }
+  .firework-text { z-index:1; text-align:center; position:relative; }
+  #surpriseBtn {
+    background:#ff3385; color:#fff; border:none; padding:15px 30px;
+    border-radius:30px; font-size:1rem; cursor:pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-top:20px;
+  }
+  #surpriseBtn:hover { transform:scale(1.05); box-shadow:0 0 20px #ff3385; }
+
+  /* Step 4 Final Message */
+  .final-scroll { display:flex; flex-direction:column; align-items:center; padding:40px 20px; width:100%; }
+  .message-card {
+    background:rgba(255,255,255,0.85); padding:20px; border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.1); line-height:1.8; text-align:center;
+    max-width:600px; margin-bottom:30px;
+  }
+  .photos { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
+  .photos img { width:120px; height:120px; border-radius:15px; object-fit:cover; opacity:0; animation:fadeIn 1s forwards; }
+  .photos img:nth-child(1){animation-delay:0.2s;} 
+  .photos img:nth-child(2){animation-delay:0.4s;}
+  .photos img:nth-child(3){animation-delay:0.6s;}
+  .photos img:nth-child(4){animation-delay:0.8s;}
+  .photos img:nth-child(5){animation-delay:1s;}
+  @keyframes fadeIn { to{opacity:1;} }
+
+</style>
+</head>
+<body>
+
+<audio id="music" src="music.mp3" loop></audio>
+
+<!-- Step 1 -->
+<div id="step1" class="scene active">
+  <h1>🎂 Blow the candles 🎂</h1>
+  <div class="cake-container">
+    <img src="cake.png" alt="Cake">
+    <div class="candle c1"><div class="flame"></div></div>
+    <div class="candle c2"><div class="flame"></div></div>
+    <div class="candle c3"><div class="flame"></div></div>
+  </div>
+  <p>(Tap anywhere to blow the candles)</p>
+</div>
+
+<!-- Step 2 -->
+<div id="step2" class="scene">
+  <h1>🎈 Click the balloon 🎈</h1>
+  <div class="balloon-container">
+    <div class="balloon-bg balloon-bg1"></div>
+    <div class="balloon-bg balloon-bg2"></div>
+    <div class="balloon-bg balloon-bg3"></div>
+    <div id="balloon"></div>
+  </div>
+</div>
+
+<!-- Step 3 -->
+<div id="step3" class="scene">
+  <video id="fireworksVideo" src="fireworks.mp4" autoplay loop muted playsinline></video>
+  <div class="firework-text">
+    <h1 style="font-size:2.5rem;">🎆 Happy Birthday Sweetheart 🎆</h1>
+    <button id="surpriseBtn">There’s a surprise for you 💖</button>
+  </div>
+</div>
+
+<!-- Step 4 -->
+<div id="step4" class="final-scroll">
+  <div class="message-card">
+    <h2 style="color:#ff3385;">💖 Happy Birthday My Darling Wifey 💖</h2>
+    <p>Today is not just your birthday, it’s the day the most beautiful soul came into this world 🌎.</p>
+    <p>You are my calm in chaos, my smile on hard days, my peace when everything feels heavy 💗.</p>
+    <p>Every time you laugh, my heart forgets how to beat properly. Loving you feels natural — like breathing 🌸.</p>
+    <p>I promise to stand by you, love you endlessly, and choose you every single day ⌚.</p>
+    <p>You are my everything, my inspiration, my happiness. May this day be as bright, colorful, and amazing as your soul ❤️.</p>
+    <p>Happy Birthday my forever love ❤️</p>
+    <div class="photos">
+      <img src="photo1.jpg">
+      <img src="photo2.jpg">
+      <img src="photo3.jpg">
+      <img src="photo4.jpg">
+      <img src="photo5.jpg">
+    </div>
+  </div>
+</div>
+
+<script>
+  const music = document.getElementById('music');
+  const step1 = document.getElementById('step1');
+  const step2 = document.getElementById('step2');
+  const step3 = document.getElementById('step3');
+  const step4 = document.getElementById('step4');
+  const balloon = document.getElementById('balloon');
+  const surpriseBtn = document.getElementById('surpriseBtn');
+
+  // Play music reliably after first user interaction
+  document.addEventListener('click', function playMusicOnce() {
+    music.play().catch(()=>{});
+    document.removeEventListener('click', playMusicOnce);
+  });
+
+  // Step 1: tap cake to blow candles
+  step1.addEventListener('click', () => {
+    document.querySelectorAll('.flame').forEach(f => f.style.opacity = 0);
+    setTimeout(() => {
+      step1.classList.remove('active');
+      step2.classList.add('active');
+    }, 800); // wait flame animation
+  });
+
+  // Step 2: click balloon
+  balloon.addEventListener('click', () => {
+    balloon.style.transform = 'scale(0)';
+    setTimeout(() => {
+      step2.classList.remove('active');
+      step3.classList.add('active');
+    }, 1000); // wait for pop animation
+  });
+
+  // Step 3: surprise button
+  surpriseBtn.addEventListener('click', () => {
+    step3.classList.remove('active');
+    step4.classList.add('active');
+  });
+</script>
+
+</body>
+</html>
